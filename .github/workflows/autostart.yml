@@ -1,4 +1,4 @@
-name: Auto start workflow process 1.1
+name: Release Artifact
 
 on:
   push:
