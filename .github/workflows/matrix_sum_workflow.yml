@@ -27,6 +27,6 @@ jobs:
           pip install -r requirements.txt
 
       # Step 4: Run the matrix.py file
-      - name: Run matrix.py
+      - name: Run scripts
         run: |
-          python matrix.py
+          pytest -v --html=report.html
