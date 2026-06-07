@@ -6,7 +6,7 @@ on:
       first_name:
         description: 'First Name'
         required: true
-        default: 'kamruzzaman'
+        default: 'kamrul'
       last_name:
         description: 'Last Name'
         required: true
