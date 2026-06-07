@@ -29,7 +29,7 @@ jobs:
       # Step 4: Run the matrix.py file
       - name: Run scripts
         run: |
-          pytest -v --html=report.html
+          pytest -v --html=report.html --self-contained-html --capture=tee-sys
       
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
