@@ -1,0 +1,24 @@
+name: Release Artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      first_name:
+        description: 'First Name'
+        required: true
+        default: 'kamruzzaman'
+      last_name:
+        description: 'Last Name'
+        required: true
+        default: 'shekh'
+    
+
+jobs:
+  printer_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: summation
+        run: |
+          echo first_name: ${{ github.event.inputs.first_name }}
+          echo last_name: ${{ github.event.inputs.last_name }}
+          echo summation : $(( ${{ github.event.inputs.first_name }} + ${{ github.event.inputs.last_name }} ))
