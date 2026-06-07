@@ -6,11 +6,11 @@ on:
       - main
 
 jobs:
-  printer workflow:
+  printer_workflow:
     runs-on: ubuntu-latest
     steps:
       - name: first name
-        runs: echo "CI"
+        run: echo "CI"
       
       - name: last name
-        runs: echo "CD"
+        run: echo "CD"
