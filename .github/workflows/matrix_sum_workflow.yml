@@ -38,3 +38,19 @@ jobs:
         with:
           name: pytest-html-report
           path: report.html
+      
+      - name: Send email with report link
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: Selenium CI Report
+          body: |
+            ✅ Selenium test run is complete.
+            Download the report artifact here:
+            ${{ github.server_url }}/${
+              { github.repository }}/actions/runs/${{ github.run_id }}
+          to: shekhnstuiit@gmail.com
+          from: GitHub Actions <${{ secrets.EMAIL_USER }}>
