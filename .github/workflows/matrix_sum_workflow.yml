@@ -1,0 +1,22 @@
+name: matrix sum workflow
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  matrix_sum_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: python setup
+        uses: actions/setup=python@v4
+        with:
+          python-version: '3.12'
+
+      - name: python install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: run matrxi file
+        run: |
+          python matrix.py
