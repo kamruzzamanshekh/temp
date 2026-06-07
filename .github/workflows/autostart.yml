@@ -1,0 +1,16 @@
+name: Auto start workflow process
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  printer workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: first name
+        runs: echo "CI"
+      
+      - name: last name
+        runs: echo "CD"
