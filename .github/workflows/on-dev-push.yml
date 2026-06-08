@@ -1,0 +1,21 @@
+name: Run QA on Dev Push
+
+on:
+  repository_dispatch:
+    types: [dev-push]
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout QA repo
+        uses: actions/checkout@v4
+
+      - name: Show trigger info
+        run: echo "Triggered by dev repo push"
+
+      - name: Run tests (example)
+        run: |
+          echo "Running QA tests..."
+          # npm test / pytest / etc
