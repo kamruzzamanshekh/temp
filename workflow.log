@@ -1,0 +1,12 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.2, pytest-9.0.3, pluggy-1.6.0 -- D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.12.2', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.0.3', 'pluggy': '1.6.0'}, 'Plugins': {'html': '4.2.0', 'metadata': '3.1.1'}, 'CI': 'true', 'JAVA_HOME': 'C:\\Program Files\\Java\\jdk-22'}
+rootdir: D:\Personal_Workspace\CI_CD_QA\temp_qa
+plugins: html-4.2.0, metadata-3.1.1
+collecting ... collected 1 item
+
+tests/test_open_website.py::test_open_website PASSED                     [100%]
+
+- Generated html report: file:///D:/Personal_Workspace/CI_CD_QA/temp_qa/report.html -
+============================== 1 passed in 7.05s ==============================
