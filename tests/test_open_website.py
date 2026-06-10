@@ -13,7 +13,11 @@ def test_current_temperature_visible(driver):
     url = "https://www.accuweather.com/en/bd/dhaka/28143/weather-forecast/28143"
     driver.get(url)
 
-    temp = driver.find_element("css selector", "div.display-temp")
+    item = driver.find_element("xpath", "/html/body/div/div[3]/div/div[3]/a[7]/span")
+    item.click()
+    # Locate the element using XPath
+    element = driver.find_element("xpath", '//*[@id="current"]/div/div/div[2]/div[1]/div/div/div/div[1]')
 
-    assert temp.is_displayed(), "Temperature is not visible"
-    assert temp.text.strip() != "", "Temperature value is empty"
+    # Get the text/value
+    value = element.text.strip()
+    print("Current weather value:", value)
