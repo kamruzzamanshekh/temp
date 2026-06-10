@@ -1,56 +1,56 @@
-name: Matrix Sum Workflow
+# name: Matrix Sum Workflow
 
-on:
-  push:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  matrix_sum_job:
-    runs-on: windows-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+# jobs:
+#   matrix_sum_job:
+#     runs-on: windows-latest
+#     env:
+#       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
-    steps:
-      # Step 1: Checkout the repository
-      - name: Checkout repo
-        uses: actions/checkout@v3
+#     steps:
+#       # Step 1: Checkout the repository
+#       - name: Checkout repo
+#         uses: actions/checkout@v3
 
-      # Step 2: Set up Python
-      - name: Python setup
-        uses: actions/setup-python@v6   # <-- fixed typo '=' → '@'
-        with:
-          python-version: '3.12'
+#       # Step 2: Set up Python
+#       - name: Python setup
+#         uses: actions/setup-python@v6   # <-- fixed typo '=' → '@'
+#         with:
+#           python-version: '3.12'
 
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+#       # Step 3: Install dependencies
+#       - name: Install dependencies
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r requirements.txt
 
-      # Step 4: Run the matrix.py file
-      - name: Run scripts
-        run: |
-          pytest -v --html=report.html --self-contained-html --capture=tee-sys
+#       # Step 4: Run the matrix.py file
+#       - name: Run scripts
+#         run: |
+#           pytest -v --html=report.html --self-contained-html --capture=tee-sys
       
-      - name: Upload HTML report
-        uses: actions/upload-artifact@v7
-        with:
-          name: pytest-html-report
-          path: report.html
+#       - name: Upload HTML report
+#         uses: actions/upload-artifact@v7
+#         with:
+#           name: pytest-html-report
+#           path: report.html
       
-      - name: Send email with report link
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USER }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: Selenium CI Report
-          body: |
-            ✅ Selenium test run is complete.
-            Download the report artifact here:
-            ${{ github.server_url }}/${
-              { github.repository }}/actions/runs/${{ github.run_id }}
-          to: shekhnstuiit@gmail.com
-          from: GitHub Actions <${{ secrets.EMAIL_USER }}>
+#       - name: Send email with report link
+#         uses: dawidd6/action-send-mail@v3
+#         with:
+#           server_address: smtp.gmail.com
+#           server_port: 465
+#           username: ${{ secrets.EMAIL_USER }}
+#           password: ${{ secrets.EMAIL_PASSWORD }}
+#           subject: Selenium CI Report
+#           body: |
+#             ✅ Selenium test run is complete.
+#             Download the report artifact here:
+#             ${{ github.server_url }}/${
+#               { github.repository }}/actions/runs/${{ github.run_id }}
+#           to: shekhnstuiit@gmail.com
+#           from: GitHub Actions <${{ secrets.EMAIL_USER }}>
