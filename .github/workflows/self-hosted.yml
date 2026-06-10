@@ -13,15 +13,23 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Activate venv and run tests
-        shell: cmd
+      - name: Activate venv and run tests (live logs)
+        shell: powershell
         run: |
-          call D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\activate.bat
-          cd /d D:\Personal_Workspace\CI_CD_QA\temp_qa
-          echo Current directory:
-          cd
+          # Activate the virtual environment
+          & "D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\Activate.ps1"
+          
+          # Move to the project directory
+          Set-Location -Path "D:\Personal_Workspace\CI_CD_QA\temp_qa"
+
+          # Print current info
+          Write-Host "Current directory:"
+          Get-Location
           python --version
-          pytest -v --html=report.html --self-contained-html --capture=tee-sys
+          pip list
+
+          # Run pytest, stream to GitHub Actions log AND save locally
+          python -m pytest -v --html=report.html --self-contained-html --capture=tee-sys | Tee-Object -FilePath workflow.log
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
