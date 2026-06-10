@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Run tests
+      - name: Run tests and save log
         shell: cmd
         run: |
           cd /d D:\Personal_Workspace\CI_CD_QA\temp_qa
@@ -21,11 +21,13 @@ jobs:
           cd
 
           D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\python.exe --version
-
           D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\pip.exe list
 
-          D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\python.exe -m pytest -v --html=report.html --self-contained-html --capture=tee-sys
+          rem Run pytest and save all output to workflow.log
+          D:\Personal_Workspace\CI_CD_QA\temp_qa\venv\Scripts\python.exe -m pytest -v --html=report.html --self-contained-html --capture=tee-sys > workflow.log 2>&1
 
+          rem Show the log in Actions output
+          type workflow.log
 
       - name: Upload HTML report
         uses: actions/upload-artifact@v4
